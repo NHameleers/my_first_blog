@@ -1,6 +1,13 @@
+{% load staticfiles %}
+
 <html>
     <head>
         <title>Django Practice blog</title>
+
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <link href='https://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <div>
@@ -8,10 +15,10 @@
         </div>
 
         {% for post in posts %}
-            <div style="border: solid black">
-                <p>Published: {{ post.published_date }} . Author: {{post.author}}</p>
+            <div class="blogpost">
                 <h2><a href="">{{ post.title }}</a></h2>
-                <p>{{ post.text|linebreaks }}</p>
+                <p>{{ post.text|linebreaks }}</p><br>
+                <p>Published: {{ post.published_date }} . Author: {{post.author}}</p>
             </div>
         {% endfor %}
     </body>
