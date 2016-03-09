@@ -1,25 +1,11 @@
-{% load staticfiles %}
+{% extends 'blog/base.html' %}
 
-<html>
-    <head>
-        <title>Django Practice blog</title>
-
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-        <link href='https://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
-    </head>
-    <body>
-        <div>
-            <h1><a href="">Django Practice Blog</a></h1>
+{% block content %}
+    {% for post in posts %}
+        <div class="blogpost">
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaks }}</p><br>
+            <footer>Published: {{ post.published_date }} . Author: {{post.author}}</footer>
         </div>
-
-        {% for post in posts %}
-            <div class="blogpost">
-                <h2><a href="">{{ post.title }}</a></h2>
-                <p>{{ post.text|linebreaks }}</p><br>
-                <p>Published: {{ post.published_date }} . Author: {{post.author}}</p>
-            </div>
-        {% endfor %}
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
